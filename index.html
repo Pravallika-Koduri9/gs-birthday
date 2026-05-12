@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>F.R.I.E.N.D.S Birthday Countdown</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&family=Cormorant+Garamond:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:
+linear-gradient(rgba(255,245,247,0.92), rgba(255,245,247,0.92)),
+url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-attachment:fixed;
+color:#3d3142;
+overflow-x:hidden;
+}
+
+.container{
+max-width:950px;
+margin:auto;
+padding:40px 20px 100px;
+}
+
+.hero{
+text-align:center;
+padding:30px 10px 50px;
+}
+
+.friends-dots{
+font-size:24px;
+letter-spacing:10px;
+color:#ff6f91;
+margin-bottom:20px;
+}
+
+.main-title{
+font-size:48px;
+line-height:1.6;
+letter-spacing:3px;
+font-family:'Poppins',sans-serif;
+font-weight:700;
+text-transform:uppercase;
+margin-bottom:25px;
+}
+
+.dot{
+padding:0 3px;
+}
+
+.red{
+color:#ff4d6d;
+}
+
+.blue{
+color:#4d96ff;
+}
+
+.yellow{
+color:#ffd166;
+}
+
+.caption{
+font-size:24px;
+font-weight:500;
+color:#7c5c7e;
+margin-bottom:35px;
+}
+
+.timer-box{
+display:inline-block;
+background:rgba(255,255,255,0.75);
+padding:20px 30px;
+border-radius:30px;
+backdrop-filter:blur(12px);
+box-shadow:0 8px 30px rgba(0,0,0,0.08);
+}
+
+#countdown{
+font-size:32px;
+font-weight:600;
+color:#ff4f81;
+}
+
+.timer-label{
+margin-top:8px;
+font-size:13px;
+letter-spacing:3px;
+text-transform:uppercase;
+color:#8c7a91;
+}
+
+.card{
+display:none;
+background:rgba(255,255,255,0.78);
+backdrop-filter:blur(12px);
+padding:35px;
+margin-top:28px;
+border-radius:35px;
+box-shadow:0 10px 40px rgba(0,0,0,0.08);
+animation:fadeUp 1s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(40px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.date{
+font-size:12px;
+letter-spacing:5px;
+text-transform:uppercase;
+color:#d17b88;
+margin-bottom:12px;
+}
+
+.card h2{
+font-family:'Cormorant Garamond',serif;
+font-size:54px;
+font-weight:700;
+letter-spacing:1px;
+margin-bottom:20px;
+color:#4d3b56;
+text-align:center;
+line-height:1.2;
+text-shadow:0 2px 10px rgba(0,0,0,0.05);
+}
+
+.message{
+font-size:18px;
+line-height:2;
+margin-bottom:20px;
+}
+
+.little-note{
+background:#fff1f5;
+padding:18px;
+border-radius:20px;
+font-style:italic;
+color:#7c5c7e;
+font-size:15px;
+line-height:1.8;
+border-left:4px solid #ffb3c6;
+box-shadow:0 4px 12px rgba(0,0,0,0.04);
+}
+
+
+.locked{
+text-align:center;
+padding:70px 20px;
+font-size:22px;
+color:#7c5c7e;
+}
+
+.footer{
+text-align:center;
+padding-top:60px;
+color:#7c5c7e;
+line-height:2;
+}
+
+.music-button{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#ff6f91;
+color:white;
+padding:14px 22px;
+border-radius:50px;
+text-decoration:none;
+font-weight:600;
+box-shadow:0 8px 24px rgba(0,0,0,0.2);
+z-index:999;
+transition:0.3s ease;
+}
+
+.music-button:hover{
+transform:scale(1.05);
+background:#ff4f81;
+}
+
+#celebration-popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.45);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+animation:fadeOut 1s ease forwards;
+animation-delay:4s;
+backdrop-filter:blur(4px);
+}
+
+.popup-content{
+background:rgba(255,255,255,0.92);
+padding:35px 45px;
+border-radius:30px;
+font-size:28px;
+font-family:'Cormorant Garamond',serif;
+text-align:center;
+color:#5c435f;
+box-shadow:0 10px 40px rgba(0,0,0,0.2);
+animation:popupScale 0.8s ease;
+line-height:1.6;
+max-width:600px;
+}
+
+@keyframes popupScale{
+from{
+transform:scale(0.7);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+@keyframes fadeOut{
+to{
+opacity:0;
+visibility:hidden;
+}
+}
+
+@media(max-width:768px){
+
+.main-title{
+font-size:28px;
+}
+
+.caption{
+font-size:18px;
+}
+
+#countdown{
+font-size:24px;
+}
+
+.card h2{
+font-size:38px;
+}
+
+.message{
+font-size:16px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="celebration-popup">
+  <div class="popup-content">
+    ✨ Could this BE any more special? ✨
+    <br><br>
+    Welcome to GS’s birthday countdown 💖
+  </div>
+</div>
+
+<div class="container">
+
+<div class="hero">
+
+<div class="friends-dots">
+• • • TO THE LEGEND🎂☕🌻✅ • • •
+</div>
+
+<h1 class="main-title">
+
+T<span class="dot red">•</span>H<span class="dot blue">•</span>E
+&nbsp;
+O<span class="dot yellow">•</span>N<span class="dot red">•</span>E
+&nbsp;
+W<span class="dot blue">•</span>H<span class="dot yellow">•</span>E<span class="dot red">•</span>R<span class="dot blue">•</span>E
+
+<br>
+
+T<span class="dot yellow">•</span>H<span class="dot red">•</span>E
+&nbsp;
+B<span class="dot blue">•</span>I<span class="dot yellow">•</span>R<span class="dot red">•</span>T<span class="dot blue">•</span>H<span class="dot yellow">•</span>D<span class="dot red">•</span>A<span class="dot blue">•</span>Y
+
+<br>
+
+C<span class="dot yellow">•</span>O<span class="dot red">•</span>U<span class="dot blue">•</span>N<span class="dot yellow">•</span>T<span class="dot red">•</span>D<span class="dot blue">•</span>O<span class="dot yellow">•</span>W<span class="dot red">•</span>N
+&nbsp;
+B<span class="dot blue">•</span>E<span class="dot yellow">•</span>G<span class="dot red">•</span>I<span class="dot blue">•</span>N<span class="dot yellow">•</span>S
+
+</h1>
+
+<p class="caption">
+HERE ARE SOME LITTLE THINGS ABOUT YOU (WHICH ARE NOT SO LITTLE AND ARE TRULY AMAZING)!! 
+THANKS FOR EXISTING GS, ADVANCE HAPPY BIRTHDAY 💖
+</p>
+
+<div class="timer-box">
+<div id="countdown"></div>
+
+<div class="timer-label">
+UNTIL MAY 28
+</div>
+</div>
+
+</div>
+
+
+
+<div id="cards">
+
+<div class="card">
+<div class="date">May 12</div>
+<h2>16 Days To Go</h2>
+<p class="message">
+You have this rare ability to make people feel emotionally safe without even trying. Being around you feels like finally unclenching after a long day.
+</p>
+<div class="little-note">
+THE REALLLLL BADDIEEEE 🐮🙊 BEST BESTTT BESTTTTTTT 💕🌻🎂
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 13</div>
+<h2>15 Days To Go</h2>
+<p class="message">
+Your strength has never been loud, and I admire that about you. Even after difficult moments, you still choose softness and kindness.
+</p>
+<div class="little-note">
+Could this BE any more iconic? ☕✨
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 14</div>
+<h2>14 Days To Go</h2>
+<p class="message">
+You listen in a way that makes people feel important and understood. That kind of attention changes people more than you know.
+</p>
+<div class="little-note">
+Main character energy. Every single time 🎬💅
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 15</div>
+<h2>13 Days To Go</h2>
+<p class="message">
+You remind me that joy doesn’t have to be grand to matter. Your excitement over little things makes life feel warmer.
+</p>
+<div class="little-note">
+You’re basically sunshine disguised as a person 🌻
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 16</div>
+<h2>12 Days To Go</h2>
+<p class="message">
+Your honesty always feels gentle instead of harsh. People trust you because your kindness always comes first.
+</p>
+<div class="little-note">
+Lowkey one of my favorite humans ever 🥹
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 17</div>
+<h2>11 Days To Go</h2>
+<p class="message">
+Your laugh could honestly repair a bad day. It makes everything feel lighter for a moment.
+</p>
+<div class="little-note">
+The world feels softer with you in it 💖
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 18</div>
+<h2>10 Days To Go</h2>
+<p class="message">
+There’s something effortlessly graceful about the way you exist. Even your ordinary moments feel beautiful.
+</p>
+<div class="little-note">
+Actual proof that kindness still exists ☁️
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 19</div>
+<h2>9 Days To Go</h2>
+<p class="message">
+Thank you for always believing in me so loudly. Your support stays with people forever.
+</p>
+<div class="little-note">
+Friendship with you = elite life experience 🫶
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 20</div>
+<h2>8 Days To Go</h2>
+<p class="message">
+Your mind and wit constantly inspire me. You handle everything with calm and poise.
+</p>
+<div class="little-note">
+You deserve every beautiful thing coming your way ✨
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 21</div>
+<h2>7 Days To Go</h2>
+<p class="message">
+Your kindness isn’t performative. It’s simply who you are at your core.
+</p>
+<div class="little-note">
+Tiny reminder: you're deeply loved 💌
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 22</div>
+<h2>6 Days To Go</h2>
+<p class="message">
+You inspire people just by being unapologetically yourself.
+</p>
+<div class="little-note">
+Professional overthinker, certified sweetheart 😭💖
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 23</div>
+<h2>5 Days To Go</h2>
+<p class="message">
+Life genuinely feels brighter, louder, and more alive when you’re around.
+</p>
+<div class="little-note">
+Your existence genuinely improves the vibe 🌸
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 24</div>
+<h2>4 Days To Go</h2>
+<p class="message">
+Your empathy is one of the most beautiful things about you.
+</p>
+<div class="little-note">
+10/10 human. Would recommend forever ☕
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 25</div>
+<h2>3 Days To Go</h2>
+<p class="message">
+You somehow turn ordinary days into stories worth remembering.
+</p>
+<div class="little-note">
+Honestly? You’re magic in a very human form ✨
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 26</div>
+<h2>2 Days To Go</h2>
+<p class="message">
+Watching you grow into yourself has been genuinely inspiring.
+</p>
+<div class="little-note">
+Tomorrow’s your dayyyyy 🎂💖
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 27</div>
+<h2>1 Day To Go</h2>
+<p class="message">
+I’m grateful for every ordinary version of you too.
+</p>
+<div class="little-note">
+One more sleep until the main character’s birthday ☕🎉
+</div>
+</div>
+
+<div class="card">
+<div class="date">May 28</div>
+<h2>It’s Your Day ✨</h2>
+<p class="message">
+Today is a celebration of the warmth you bring into people’s lives. I love you endlessly.
+</p>
+<div class="little-note">
+HAPPY BIRTHDAY TO THE MOST ICONIC HUMAN EVER 🎉☕💖
+</div>
+</div>
+
+</div>
+
+
+
+<div class="locked" id="lockedMessage"></div>
+<div class="footer">
+
+<p>
+“This link updates every morning until your birthday.”
+</p>
+
+<p>
+Made with love, memories, coffee dates & friendship ☕💖
+</p>
+
+</div>
+
+</div>
+
+
+<audio id="friendsMusic" loop>
+  <source src="friends-theme.mp3" type="audio/mp3">
+</audio>
+
+<button class="music-button" onclick="toggleMusic()">
+🎵 PLAY FRIENDS THEME
+</button>
+
+<script>
+
+const music = document.getElementById("friendsMusic");
+let isPlaying = false;
+
+function toggleMusic(){
+
+if(isPlaying){
+
+music.pause();
+document.querySelector(".music-button").innerHTML =
+"🎵 PLAY FRIENDS THEME";
+
+}
+
+else{
+
+music.play();
+document.querySelector(".music-button").innerHTML =
+"⏸ PAUSE MUSIC";
+
+}
+
+isPlaying = !isPlaying;
+
+}
+
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script>
+
+confetti({
+particleCount: 180,
+spread: 100,
+origin: { y: 0.6 }
+});
+
+const countdown = document.getElementById("countdown");
+
+const targetDate = new Date("May 28, 2026 00:00:00").getTime();
+
+function updateCountdown(){
+
+const now = new Date().getTime();
+
+const difference = targetDate - now;
+
+const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+countdown.innerHTML =
+days + "d : " +
+hours + "h : " +
+minutes + "m : " +
+seconds + "s";
+
+}
+
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+const cards = document.querySelectorAll('.card');
+const lockedMessage = document.getElementById('lockedMessage');
+
+const today = new Date();
+const month = today.getMonth() + 1;
+const day = today.getDate();
+
+let revealIndex = -1;
+
+if(month === 5){
+
+if(day >= 12 && day <= 28){
+revealIndex = day - 12;
+}
+
+else if(day > 28){
+revealIndex = cards.length - 1;
+}
+
+}
+
+cards.forEach((card,index)=>{
+
+if(index <= revealIndex){
+card.style.display = 'block';
+}
+
+});
+
+if(revealIndex === -1){
+
+lockedMessage.innerHTML =
+"✨ The countdown begins on May 12 ✨";
+
+}
+
+</script>
+
+</body>
+</html>
+
