@@ -17,27 +17,23 @@ padding:0;
 box-sizing:border-box;
 }
 
+
 body{
 font-family:'Poppins',sans-serif;
+
 background:
-linear-gradient(rgba(255,245,247,0.92), rgba(255,245,247,0.92)),
-url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1600&auto=format&fit=crop');
+linear-gradient(rgba(255,245,247,0.88), rgba(255,245,247,0.9)),
+url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1600&auto=format&fit=crop');
+
 background-size:cover;
+background-position:center;
 background-attachment:fixed;
+
 color:#3d3142;
 overflow-x:hidden;
+position:relative;
 }
 
-.container{
-max-width:950px;
-margin:auto;
-padding:40px 20px 100px;
-}
-
-.hero{
-text-align:center;
-padding:30px 10px 50px;
-}
 
 .friends-dots{
 font-size:24px;
@@ -245,6 +241,84 @@ visibility:hidden;
 }
 }
 
+
+.bows{
+position:fixed;
+top:20px;
+right:25px;
+font-size:34px;
+z-index:999;
+opacity:0.85;
+animation:floatBow 3s ease-in-out infinite;
+}
+
+@keyframes floatBow{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-8px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+.hearts::before{
+content:"💖💖💖💜❤️‍🩹❤️‍🩹💜💝💝💝";
+position:fixed;
+bottom:-20px;
+left:10%;
+font-size:24px;
+animation:floatHearts 10s linear infinite;
+opacity:0.4;
+pointer-events:none;
+}
+
+@keyframes floatHearts{
+
+0%{
+transform:translateY(0);
+opacity:0;
+}
+
+20%{
+opacity:0.4;
+}
+
+100%{
+transform:translateY(-120vh);
+opacity:0;
+}
+
+}
+
+.card{
+transform:rotate(-0.5deg);
+transition:0.4s ease;
+}
+
+.card:hover{
+transform:rotate(0deg) scale(1.01);
+}
+
+.friends-quote{
+margin-top:20px;
+font-size:18px;
+font-style:italic;
+opacity:0.7;
+}
+
+.typing-text{
+font-size:30px;
+line-height:1.5;
+}
+
+
 @media(max-width:768px){
 
 .main-title{
@@ -274,13 +348,28 @@ font-size:16px;
 
 <body>
 
+
+<div class="bows">
+🎀 🎀 🎀
+</div>
+
+<div class="hearts"></div>
+
+
+
+
 <div id="celebration-popup">
   <div class="popup-content">
-    ✨ Could this BE any more special? ✨
-    <br><br>
+
+    <h2 class="typing-text"></h2>
+
+    <br>
+
     Welcome to GS’s birthday countdown 💖
+
   </div>
 </div>
+
 
 <div class="container">
 
@@ -525,6 +614,12 @@ HAPPY BIRTHDAY TO THE MOST ICONIC HUMAN EVER 🎉☕💖
 <div class="locked" id="lockedMessage"></div>
 <div class="footer">
 
+
+<p class="friends-quote">
+“I’ll be there for you…” ☕
+</p>
+
+
 <p>
 “This link updates every morning until your birthday.”
 </p>
@@ -573,6 +668,32 @@ isPlaying = !isPlaying;
 
 }
 
+
+
+const text =
+"✨ Could this BE any more special? ✨";
+
+let i = 0;
+
+function typingEffect(){
+
+if(i < text.length){
+
+document.querySelector(".typing-text").innerHTML +=
+text.charAt(i);
+
+i++;
+
+setTimeout(typingEffect,60);
+
+}
+
+}
+
+typingEffect();
+
+
+
 </script>
 
 
@@ -580,11 +701,32 @@ isPlaying = !isPlaying;
 
 <script>
 
+
+const duration = 5 * 1000;
+const end = Date.now() + duration;
+
+(function frame() {
+
 confetti({
-particleCount: 180,
-spread: 100,
-origin: { y: 0.6 }
+particleCount: 4,
+angle: 60,
+spread: 70,
+origin: { x: 0 }
 });
+
+confetti({
+particleCount: 4,
+angle: 120,
+spread: 70,
+origin: { x: 1 }
+});
+
+if (Date.now() < end) {
+requestAnimationFrame(frame);
+}
+
+})();
+
 
 const countdown = document.getElementById("countdown");
 
@@ -650,6 +792,8 @@ lockedMessage.innerHTML =
 
 </script>
 
+
+
+
 </body>
 </html>
-
