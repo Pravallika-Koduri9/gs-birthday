@@ -18,21 +18,18 @@ box-sizing:border-box;
 }
 
 
+
 body{
 font-family:'Poppins',sans-serif;
-
 background:
-linear-gradient(rgba(255,245,247,0.88), rgba(255,245,247,0.9)),
-url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1600&auto=format&fit=crop');
-
+linear-gradient(rgba(255,245,247,0.92), rgba(255,245,247,0.92)),
+url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1600&auto=format&fit=crop');
 background-size:cover;
-background-position:center;
 background-attachment:fixed;
-
 color:#3d3142;
 overflow-x:hidden;
-position:relative;
 }
+
 
 
 .friends-dots{
@@ -268,16 +265,6 @@ transform:translateY(0px);
 
 }
 
-.hearts::before{
-content:"💖💖💖💜❤️‍🩹❤️‍🩹💜💝💝💝";
-position:fixed;
-bottom:-20px;
-left:10%;
-font-size:24px;
-animation:floatHearts 10s linear infinite;
-opacity:0.4;
-pointer-events:none;
-}
 
 @keyframes floatHearts{
 
@@ -353,7 +340,7 @@ font-size:16px;
 🎀 🎀 🎀
 </div>
 
-<div class="hearts"></div>
+
 
 
 
@@ -616,7 +603,7 @@ HAPPY BIRTHDAY TO THE MOST ICONIC HUMAN EVER 🎉☕💖
 
 
 <p class="friends-quote">
-“I’ll be there for you…” ☕
+“💜I’ll be there for you…💜” 
 </p>
 
 
@@ -702,30 +689,27 @@ typingEffect();
 <script>
 
 
-const duration = 5 * 1000;
-const end = Date.now() + duration;
 
-(function frame() {
+window.onload = function(){
 
-confetti({
-particleCount: 4,
-angle: 60,
-spread: 70,
-origin: { x: 0 }
-});
+const duration = 4000;
+const animationEnd = Date.now() + duration;
+
+const interval = setInterval(function() {
 
 confetti({
-particleCount: 4,
-angle: 120,
+particleCount: 12,
 spread: 70,
-origin: { x: 1 }
+origin: { y: 0.6 }
 });
 
-if (Date.now() < end) {
-requestAnimationFrame(frame);
+if (Date.now() > animationEnd) {
+clearInterval(interval);
 }
 
-})();
+}, 250);
+
+};
 
 
 const countdown = document.getElementById("countdown");
