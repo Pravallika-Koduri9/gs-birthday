@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,7 +42,30 @@ padding:30px 10px 50px;
 font-size:24px;
 letter-spacing:10px;
 color:#ff6f91;
-margin-bottom:20px;
+margin-bottom:18px;
+}
+
+.top-bow{
+font-size:32px;
+margin-bottom:18px;
+opacity:0.9;
+animation:softFloat 3s ease-in-out infinite;
+}
+
+@keyframes softFloat{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-4px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
 }
 
 .main-title{
@@ -53,7 +75,7 @@ letter-spacing:3px;
 font-family:'Poppins',sans-serif;
 font-weight:700;
 text-transform:uppercase;
-margin-bottom:25px;
+margin-bottom:28px;
 }
 
 .dot{
@@ -73,10 +95,17 @@ color:#ffd166;
 }
 
 .caption{
-font-size:24px;
+font-family:'Cormorant Garamond',serif;
+font-size:28px;
 font-weight:500;
-color:#7c5c7e;
-margin-bottom:35px;
+line-height:1.6;
+color:#6f5b75;
+max-width:720px;
+margin:0 auto 40px;
+text-align:center;
+letter-spacing:0.5px;
+font-style:italic;
+opacity:0.9;
 }
 
 .timer-box{
@@ -162,7 +191,6 @@ border-left:4px solid #ffb3c6;
 box-shadow:0 4px 12px rgba(0,0,0,0.04);
 }
 
-
 .locked{
 text-align:center;
 padding:70px 20px;
@@ -185,11 +213,12 @@ background:#ff6f91;
 color:white;
 padding:14px 22px;
 border-radius:50px;
-text-decoration:none;
+border:none;
 font-weight:600;
 box-shadow:0 8px 24px rgba(0,0,0,0.2);
 z-index:999;
 transition:0.3s ease;
+cursor:pointer;
 }
 
 .music-button:hover{
@@ -252,7 +281,8 @@ font-size:28px;
 }
 
 .caption{
-font-size:18px;
+font-size:20px;
+padding:0 10px;
 }
 
 #countdown{
@@ -287,45 +317,11 @@ font-size:16px;
 <div class="hero">
 
 <div class="friends-dots">
-• • • TO THE LEGEND🎂☕🌻✅ • • •
+• • • TO THE LEGEND 🎂☕🌻 • • •
 </div>
+
 <div class="top-bow">🎀</div>
-.top-bow{
-font-size:32px;
-margin-bottom:18px;
-opacity:0.9;
-animation:softFloat 3s ease-in-out infinite;
-}
 
-@keyframes softFloat{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-4px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
-}
-
-.caption{
-font-family:'Cormorant Garamond',serif;
-font-size:28px;
-font-weight:500;
-line-height:1.6;
-color:#6f5b75;
-max-width:720px;
-margin:0 auto 40px;
-text-align:center;
-letter-spacing:0.5px;
-font-style:italic;
-opacity:0.9;
-}
 <h1 class="main-title">
 
 T<span class="dot red">•</span>H<span class="dot blue">•</span>E
@@ -349,23 +345,9 @@ B<span class="dot blue">•</span>E<span class="dot yellow">•</span>G<span cla
 </h1>
 
 <p class="caption">
-😉Tiny reminders, little memories, and a whole lot of love until May 28😉
-THANKS FOR EXISTING GS, ADVANCE HAPPY BIRTHDAY 💖
+Tiny reminders, little memories, and a whole lot of love
+THANKS FOR EXISTING GS, ADVANCE HAPPY BIRTHDAY💖
 </p>
-
-.caption{
-font-family:'Cormorant Garamond',serif;
-font-size:28px;
-font-weight:500;
-line-height:1.6;
-color:#6f5b75;
-max-width:720px;
-margin:0 auto 40px;
-text-align:center;
-letter-spacing:0.5px;
-font-style:italic;
-opacity:0.9;
-}
 
 <div class="timer-box">
 <div id="countdown"></div>
@@ -376,8 +358,6 @@ UNTIL MAY 28
 </div>
 
 </div>
-
-
 
 <div id="cards">
 
@@ -473,7 +453,7 @@ Friendship with you = elite life experience 🫶
 <div class="date">May 20</div>
 <h2>8 Days To Go</h2>
 <p class="message">
-Your mind and wit constantly inspire me. You handle everything with calm or maybe a little chaos.
+Your mind and wit constantly inspire me. You handle everything with calm and poise.
 </p>
 <div class="little-note">
 You deserve every beautiful thing coming your way ✨
@@ -498,7 +478,7 @@ Tiny reminder: you're deeply loved 💌
 You inspire people just by being unapologetically yourself.
 </p>
 <div class="little-note">
-Professional overthinker, certified sweetheart 😭💖
+Professional coffee paglu, certified sweetheart 😭💖
 </div>
 </div>
 
@@ -570,9 +550,8 @@ HAPPY BIRTHDAY TO THE MOST ICONIC HUMAN EVER 🎉☕💖
 
 </div>
 
-
-
 <div class="locked" id="lockedMessage"></div>
+
 <div class="footer">
 
 <p>
@@ -586,7 +565,6 @@ Made with love, memories, coffee dates & friendship ☕💖
 </div>
 
 </div>
-
 
 <audio id="friendsMusic" loop>
   <source src="friends-theme.mp3" type="audio/mp3">
@@ -625,16 +603,30 @@ isPlaying = !isPlaying;
 
 </script>
 
-
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
 <script>
 
+window.onload = function(){
+
+const duration = 4000;
+const animationEnd = Date.now() + duration;
+
+const interval = setInterval(function() {
+
 confetti({
-particleCount: 180,
-spread: 100,
-origin: { y: 0.6 }
+particleCount:12,
+spread:70,
+origin:{ y:0.6 }
 });
+
+if(Date.now() > animationEnd){
+clearInterval(interval);
+}
+
+},250);
+
+};
 
 const countdown = document.getElementById("countdown");
 
@@ -702,4 +694,3 @@ lockedMessage.innerHTML =
 
 </body>
 </html>
-
